@@ -13,10 +13,6 @@
         android:theme="@style/Theme.Quiz"
         tools:targetApi="31">
         <activity
-            android:name=".Questao2Activity"
-            android:exported="false">
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,6 +20,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Questao3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Questao2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Questao1Activity"
+            android:exported="false">
+
         </activity>
     </application>
 

@@ -6,42 +6,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.Toast;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button buttonResponder;
-    RadioButton radioButtonParasita;
+    Button buttonAvancar;
+    EditText editTextNome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonResponder = findViewById(R.id.buttonResponder);
-        radioButtonParasita = findViewById(R.id.radioButtonParasita);
+        buttonAvancar = findViewById(R.id.buttonAvancar);
+        editTextNome = findViewById(R.id.editTextNome);
 
-        /*buttonResponder.setOnClickListener(new View.OnClickListener() {
+        buttonAvancar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (radioButtonParasita.isChecked()){
-                    Toast.makeText(MainActivity.this, "Certa resposta!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Erroooooooouuu!", Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(MainActivity.this, Questao1Activity.class);
+                intent.putExtra("nome", editTextNome.getText().toString());//passar informações entre atividades
+                startActivity(intent);
             }
-        });*/
-    }
-
-    // Método alternativo
-    public void verificarResposta(View view){
-        if (radioButtonParasita.isChecked()){
-            Toast.makeText(MainActivity.this, "Certa resposta!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, Questao2Activity.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(MainActivity.this, "Erroooooooouuu!", Toast.LENGTH_SHORT).show();
-        }
+        });
     }
 }

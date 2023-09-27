@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Questao2Activity">
+    tools:context=".Questao3Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,39 +29,46 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quais desses atorea já ganhou um Oscar?"
+        android:text="Em que ano o homem pisou na Lua pela primeira vez?"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="276dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/lua" />
 
-    <CheckBox
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_marginTop="20dp"
-        android:id="@+id/checkBoxLeonardoDiCaprio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Leonardo DiCaprio" />
+        android:layout_height="wrap_content" >
 
-    <CheckBox
-        android:id="@+id/checkBoxTomHanks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tom Hanks" />
+        <RadioButton
+            android:id="@+id/radioButton1914"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1914" />
 
-    <CheckBox
-        android:id="@+id/checkBoxJimCarrey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jim Carrey" />
+        <RadioButton
+            android:id="@+id/radioButton1969"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1969" />
 
-    <CheckBox
-        android:id="@+id/checkBoxChadwickBoseman"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chadwick Boseman" />
+        <RadioButton
+            android:id="@+id/radioButton1945"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1945" />
+
+    </RadioGroup>
 
     <Button
-        android:id="@+id/buttonResponderQ2"
+
+        android:id="@+id/buttonResponderQ3"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

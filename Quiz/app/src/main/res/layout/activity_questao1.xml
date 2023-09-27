@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Questao2Activity">
-
+    tools:context=".Questao1Activity">
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,48 +23,47 @@
             android:text="Anônimo(a)"
             android:id="@+id/textViewNome"/>
     </LinearLayout>
-
+    
     <TextView
         android:id="@+id/textView"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quais desses atorea já ganhou um Oscar?"
+        android:text="Qual filme ganhou o Oscar de melhor filme em 2019?"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-
-    <CheckBox
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_marginTop="20dp"
-        android:id="@+id/checkBoxLeonardoDiCaprio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Leonardo DiCaprio" />
+        android:layout_height="wrap_content" >
 
-    <CheckBox
-        android:id="@+id/checkBoxTomHanks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tom Hanks" />
+        <RadioButton
+            android:id="@+id/radioButtonCoringa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Coringa" />
 
-    <CheckBox
-        android:id="@+id/checkBoxJimCarrey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jim Carrey" />
+        <RadioButton
+            android:id="@+id/radioButtonParasita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Parasita" />
 
-    <CheckBox
-        android:id="@+id/checkBoxChadwickBoseman"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chadwick Boseman" />
+        <RadioButton
+            android:id="@+id/radioButton1917"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1917" />
+
+    </RadioGroup>
 
     <Button
-        android:id="@+id/buttonResponderQ2"
+        android:onClick="verificarResposta"
+        android:id="@+id/buttonResponder"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Responder" />
-
 </LinearLayout>

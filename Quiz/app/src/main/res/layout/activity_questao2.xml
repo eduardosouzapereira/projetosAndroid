@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Questao2Activity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quais desses atorea já ganhou um Oscar?"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <CheckBox
+        android:layout_marginTop="20dp"
+        android:id="@+id/checkBoxLeonardoDiCaprio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leonardo DiCaprio" />
+
+    <CheckBox
+        android:id="@+id/checkBoxTomHanks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tom Hanks" />
+
+    <CheckBox
+        android:id="@+id/checkBoxJimCarrey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jim Carrey" />
+
+    <CheckBox
+        android:id="@+id/checkBoxChadwickBoseman"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chadwick Boseman" />
+
+    <Button
+        android:id="@+id/buttonResponderQ2"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Responder" />
+
+</LinearLayout>

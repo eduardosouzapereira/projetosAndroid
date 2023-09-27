@@ -10,7 +10,44 @@
 
     <TextView
         android:id="@+id/textView"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Qual filme ganhou o Oscar de melhor filme em 2019?"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radioButtonCoringa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Coringa" />
+
+        <RadioButton
+            android:id="@+id/radioButtonParasita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Parasita" />
+
+        <RadioButton
+            android:id="@+id/radioButton1917"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1917" />
+
+    </RadioGroup>
+
+    <Button
+        android:onClick="verificarResposta"
+        android:id="@+id/buttonResponder"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Responder" />
 </LinearLayout>

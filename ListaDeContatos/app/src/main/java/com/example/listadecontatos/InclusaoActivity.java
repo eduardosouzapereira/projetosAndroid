@@ -2,6 +2,7 @@ package com.example.listadecontatos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,8 @@ public class InclusaoActivity extends AppCompatActivity {
                     long linhasInseridas = daoContato.inserir(dtoContato);
                     if (linhasInseridas > 0){
                         Toast.makeText(InclusaoActivity.this, "Inserido com sucesso!", Toast.LENGTH_LONG).show();
+                        Intent main = new Intent(InclusaoActivity.this, MainActivity.class);
+                        startActivity(main);
                     } else {
                         Toast.makeText(InclusaoActivity.this, "Não foi possível inserir. Motivo: MISTÉRIO TOTAL!", Toast.LENGTH_LONG).show();
                     }

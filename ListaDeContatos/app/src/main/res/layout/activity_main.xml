@@ -12,7 +12,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonAdicionarNovo"
         android:text="Novo contato"
-        android:layout_marginBottom="3dp"/>
+        android:layout_marginBottom="5dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPesquisaNome"
+        android:hint="Pesquisa por nome"
+        android:layout_marginBottom="5dp"/>
 
     <ListView
         android:layout_width="match_parent"

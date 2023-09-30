@@ -57,4 +57,22 @@ public class DaoContato extends SQLiteOpenHelper {
         }
         return arrayListContato;
     }
+
+    public ArrayList<DtoContato> consultarPorNome(String nome) {
+        String comando = "SELECT * FROM " + TABELA + " WHERE NOME LIKE ?";
+        String[] args = {"%" + nome + "%"};
+        Cursor cursor = getReadableDatabase().rawQuery(comando, args);
+
+        ArrayList<DtoContato> arrayListContato = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            DtoContato dtoContato = new DtoContato();
+            dtoContato.setId(cursor.getInt(0));
+            dtoContato.setNome(cursor.getString(1));
+            dtoContato.setEmail(cursor.getString(2));
+            dtoContato.setTelefone(cursor.getString(3));
+            arrayListContato.add(dtoContato);
+        }
+        return arrayListContato;
+    }
 }

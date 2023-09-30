@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -100,30 +101,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == 0){
-            Toast.makeText(this, "Ligando", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Ligando", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + contato.getTelefone()));
+            startActivity(intent);
         } else if(item.getItemId() == 1){
-            Toast.makeText(this, "Detalhando", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Detalhando", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, DetalhesActivity.class);
+            intent.putExtra("id",contato.getId());
+            intent.putExtra("nome", contato.getNome());
+            intent.putExtra("email", contato.getEmail());
+            intent.putExtra("telefone", contato.getTelefone());
+            startActivity(intent);
         } else {
             //Toast.makeText(this, "Excluindo", Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
-                msg.setMessage("Confirma exclusão?");
-                msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        int deletados = daoContato.excluir(contato);
-                        if (deletados > 0){
-                            Toast.makeText(MainActivity.this, "Excluído com sucesso!", Toast.LENGTH_SHORT).show();
-                            arrayListContato = daoContato.consultarTodos();
-                            atualizarListView();
-                        }else {
-                            Toast.makeText(MainActivity.this, "Erro ao excluir!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            msg.setNegativeButton("Não", null);
-            msg.show();
+            excluir();
         }
-
         return super.onContextItemSelected(item);
+    }
+
+    public void excluir(){
+        AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
+        msg.setMessage("Confirma exclusão?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int deletados = daoContato.excluir(contato);
+                if (deletados > 0){
+                    Toast.makeText(MainActivity.this, "Excluído com sucesso!", Toast.LENGTH_SHORT).show();
+                    arrayListContato = daoContato.consultarTodos();
+                    atualizarListView();
+                }else {
+                    Toast.makeText(MainActivity.this, "Erro ao excluir!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        msg.setNegativeButton("Não", null);
+        msg.show();
     }
 }

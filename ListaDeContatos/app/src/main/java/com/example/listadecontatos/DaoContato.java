@@ -83,4 +83,14 @@ public class DaoContato extends SQLiteOpenHelper {
         String[] args = {contato.getId() + ""};
         return getWritableDatabase().delete(TABELA, id, args);
     }
+
+    public long alterar(DtoContato contato) {
+        ContentValues values = new ContentValues();
+        values.put("NOME", contato.getNome());
+        values.put("EMAIL", contato.getEmail());
+        values.put("TELEFONE", contato.getTelefone());
+        String id = "id = ?";
+        String[] args = {contato.getId() + ""};
+        return getWritableDatabase().update(TABELA, values, id, args);
+    }
 }

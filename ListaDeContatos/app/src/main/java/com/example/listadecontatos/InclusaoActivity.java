@@ -30,13 +30,16 @@ public class InclusaoActivity extends AppCompatActivity {
                 dtoContato.setNome(editTextNome.getText().toString());
                 dtoContato.setEmail(editTextEmail.getText().toString());
                 dtoContato.setTelefone(editTextTel.getText().toString());
+
                 DaoContato daoContato = new DaoContato(InclusaoActivity.this);
+
                 try {
                     long linhasInseridas = daoContato.inserir(dtoContato);
                     if (linhasInseridas > 0){
                         Toast.makeText(InclusaoActivity.this, "Inserido com sucesso!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(InclusaoActivity.this, "Não foi possível inserir. Motivo: MISTÉRIO TOTAL!", Toast.LENGTH_LONG).show();
                     }
-
                 } catch (Exception e){
                     Toast.makeText(InclusaoActivity.this, "Erro ao inserir: " + e.toString(), Toast.LENGTH_LONG).show();
                 }

@@ -1,5 +1,7 @@
 package com.example.listadecontatos;
 
+import androidx.annotation.NonNull;
+
 public class DtoContato {
     private int id;
     private String nome;
@@ -13,11 +15,20 @@ public class DtoContato {
     }
 
     public DtoContato(){
+    }
 
+    @NonNull
+    @Override
+    public String toString(){
+        return nome + " - " + telefone;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getNome() {
@@ -43,7 +54,4 @@ public class DtoContato {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-
-
 }

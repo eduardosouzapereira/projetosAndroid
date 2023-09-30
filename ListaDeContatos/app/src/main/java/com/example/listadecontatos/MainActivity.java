@@ -1,12 +1,18 @@
 package com.example.listadecontatos;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Button buttonAdicionarNovo;
     ArrayList<DtoContato> arrayListContato = new ArrayList<>();
     EditText editTextPesquisaNome;
+    DaoContato daoContato = new DaoContato(MainActivity.this);
+    DtoContato contato;
 
 
     @Override
@@ -30,8 +38,17 @@ public class MainActivity extends AppCompatActivity {
         listViewContato = findViewById(R.id.listViewContato);
         buttonAdicionarNovo = findViewById(R.id.buttonAdicionarNovo);
 
-        DaoContato daoContato = new DaoContato(MainActivity.this);
+
         editTextPesquisaNome = findViewById(R.id.editTextPesquisaNome);
+
+        listViewContato.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int posicao, long l) {
+                contato = arrayListContato.get(posicao);
+                registerForContextMenu(listViewContato);
+                return false;
+            }
+        });
 
         editTextPesquisaNome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -48,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 //Toast.makeText(MainActivity.this, "after: " + editable, Toast.LENGTH_SHORT).show();
                 arrayListContato = daoContato.consultarPorNome(editable.toString());
-                ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arrayListContato);
-                listViewContato.setAdapter(adapter);
+                atualizarListView();
             }
         });
 
@@ -62,12 +78,52 @@ public class MainActivity extends AppCompatActivity {
         });
 
         arrayListContato = daoContato.consultarTodos();
+        atualizarListView();
 
+    }
+
+    private void atualizarListView() {
         ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, arrayListContato);
-
         listViewContato.setAdapter(adapter);
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
 
+        //(hierarquia, ordem em que aparece, id do objeto)
+        menu.add(0,0,0, "Ligar");
+        menu.add(0,1,1, "Detalhes");
+        menu.add(0,2,2, "Excluir");
+    }
 
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == 0){
+            Toast.makeText(this, "Ligando", Toast.LENGTH_SHORT).show();
+        } else if(item.getItemId() == 1){
+            Toast.makeText(this, "Detalhando", Toast.LENGTH_SHORT).show();
+        } else {
+            //Toast.makeText(this, "Excluindo", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
+                msg.setMessage("Confirma exclusão?");
+                msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int deletados = daoContato.excluir(contato);
+                        if (deletados > 0){
+                            Toast.makeText(MainActivity.this, "Excluído com sucesso!", Toast.LENGTH_SHORT).show();
+                            arrayListContato = daoContato.consultarTodos();
+                            atualizarListView();
+                        }else {
+                            Toast.makeText(MainActivity.this, "Erro ao excluir!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            msg.setNegativeButton("Não", null);
+            msg.show();
+        }
+
+        return super.onContextItemSelected(item);
     }
 }

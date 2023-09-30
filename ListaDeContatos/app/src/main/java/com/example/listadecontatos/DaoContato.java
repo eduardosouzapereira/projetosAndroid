@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 
 public class DaoContato extends SQLiteOpenHelper {
@@ -74,5 +76,11 @@ public class DaoContato extends SQLiteOpenHelper {
             arrayListContato.add(dtoContato);
         }
         return arrayListContato;
+    }
+
+    public int excluir(DtoContato contato) {
+        String id = "id = ?";
+        String[] args = {contato.getId() + ""};
+        return getWritableDatabase().delete(TABELA, id, args);
     }
 }
